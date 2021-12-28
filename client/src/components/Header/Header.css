@@ -1,0 +1,54 @@
+.header {
+  margin-top: 60px;
+}
+
+.headertitles {
+  display: flex;
+  flex-direction: column;
+  color: #444;
+  align-items: center;
+  width: auto;
+  font-family: "Lora", serif;
+  color: #fff;
+  animation: flicker 1.5s infinite alternate;
+}
+
+@keyframes flicker {
+  0%,
+  18%,
+  22%,
+  25%,
+  53%,
+  57%,
+  100% {
+    text-shadow: 0 0 4px #fff, 0 0 11px #fff, 0 0 19px #fff, 0 0 40px #f09,
+      0 0 80px #f09, 0 0 90px #f09, 0 0 100px #f09, 0 0 150px #f09;
+  }
+
+  20%,
+  24%,
+  55% {
+    text-shadow: none;
+  }
+}
+
+.headertitlesm {
+  position: absolute;
+  top: 18%;
+  font-size: 20px;
+}
+
+.headertitlelg {
+  position: absolute;
+  top: 20%;
+  font-size: 100px;
+}
+
+.headerImg {
+  width: 100%;
+  height: 550px;
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  margin-top: -80px;
+}
