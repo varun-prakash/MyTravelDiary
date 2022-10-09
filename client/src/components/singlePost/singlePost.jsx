@@ -1,53 +1,41 @@
 import "./singlePost.css";
+import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
-export default function singlePost() {
+export default function SinglePost() {
+  const location = useLocation();
+  const path = location.pathname.split("/")[2];
+  const [post, setPost] = useState({});
+
+  useEffect(() => {
+    const getPost = async () => {
+      const res = await axios.get("/posts/" + path);
+      setPost(res.data);
+    };
+    getPost();
+  }, [path]);
   return (
     <div className="singlePost">
       <div className="singlePostWrapper">
-        <img
-          src="https://images.pexels.com/photos/10298360/pexels-photo-10298360.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-          className="singlPostImg"
-          alt=""
-        />
+        {post.photo && <img src={post.photo} className="singlPostImg" alt="" />}
+
         <h1 className="singlePostTitle">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+          {post.title}
           <div className="postEdit">
             <i className="postIcon fas fa-edit"></i>
             <i className="postIcon fas fa-trash-alt"></i>
           </div>
         </h1>
         <div className="singlePostInfo">
-          <span className="postAuthor">
-            Author: <b>Varun Prakash</b>
+          <span className="singlePostAuthor">
+            Author: <b>{post.username}</b>
           </span>
-          <span className="postDate">1 hour ago</span>
+          <span className="singlePostDate">
+            {new Date(post.createdAt).toDateString()}
+          </span>
         </div>
-        <p className="postDesc">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis,
-          modi ducimus? Quo expedita quod quae voluptatem est ad enim, corrupti
-          aspernatur voluptatibus rerum a at velit dicta in deleniti dolore.
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis,
-          modi ducimus? Quo expedita quod quae voluptatem est ad enim, corrupti
-          aspernatur voluptatibus rerum a at velit dicta in deleniti dolore.
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis,
-          modi ducimus? Quo expedita quod quae voluptatem est ad enim, corrupti
-          aspernatur voluptatibus rerum a at velit dicta in deleniti dolore.
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis,
-          modi ducimus? Quo expedita quod quae voluptatem est ad enim, corrupti
-          aspernatur voluptatibus rerum a at velit dicta in deleniti dolore.
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis,
-          modi ducimus? Quo expedita quod quae voluptatem est ad enim, corrupti
-          aspernatur voluptatibus rerum a at velit dicta in deleniti dolore.
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis,
-          modi ducimus? Quo expedita quod quae voluptatem est ad enim, corrupti
-          aspernatur voluptatibus rerum a at velit dicta in deleniti dolore.
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis,
-          modi ducimus? Quo expedita quod quae voluptatem est ad enim, corrupti
-          aspernatur voluptatibus rerum a at velit dicta in deleniti dolore.
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis,
-          modi ducimus? Quo expedita quod quae voluptatem est ad enim, corrupti
-          aspernatur voluptatibus rerum a at velit dicta in deleniti dolore.
-        </p>
+        <p className="singlePostDesc">{post.desc}</p>
       </div>
     </div>
   );
