@@ -1,9 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { Context } from "../../context/Context";
 import "./Navbar.css";
 
 export default function Navbar() {
-  const user = false;
+  const { user, dispatch } = useContext(Context);
+  const PF = "http://localhost:5000/images/";
+
+  const handleLogout = () => {
+    dispatch({ type: "LOGOUT" });
+  };
+
   return (
     <div className="Nav">
       <div className="navLeft">
@@ -38,7 +46,7 @@ export default function Navbar() {
           </li>
           <li className="navListItem">
             {" "}
-            <Link className="link" to="/">
+            <Link className="link" to="/" onClick={handleLogout}>
               {user && "Logout"}
             </Link>
           </li>
@@ -46,12 +54,11 @@ export default function Navbar() {
       </div>
       <div className="navRight">
         {user ? (
-          <img
-            className="navImg"
-            src="https://images.pexels.com/photos/2764976/pexels-photo-2764976.jpeg?cs=srgb&dl=pexels-tubarones-photography-2764976.jpg&fm=jpg"
-            alt=""
-          />
+          <img className="navImg" src={user.profilepic} alt="" />
         ) : (
+          // <Link to="/settings">
+
+          // </Link>
           <ul className="navList">
             <li className="navListItem">
               {" "}

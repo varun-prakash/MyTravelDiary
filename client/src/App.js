@@ -13,16 +13,18 @@ import {
   Link,
   useParams,
 } from "react-router-dom";
+import { useContext } from "react";
+import { Context } from "./context/Context";
 
 function App() {
-  const user = true;
+  const { user } = useContext(Context);
   return (
     <div className="App">
       <Router>
         <Navbar />
         <Switch>
           <Route exact path="/">
-            {user ? <Home /> : <Register />}
+            <Home />
           </Route>
           <Route path="/Write">{user ? <Write /> : <Register />}</Route>
           <Route path="/Login">{user ? <Home /> : <Login />}</Route>

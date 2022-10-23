@@ -8,8 +8,8 @@
       rgba(255, 255, 255, 0.5),
       rgba(255, 255, 255, 0.5)
     ),
-    url("https://images.pexels.com/photos/9880331/pexels-photo-9880331.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
-  background-size: contain;
+    url("https://images.pexels.com/photos/844297/pexels-photo-844297.jpeg?cs=srgb&dl=pexels-eberhard-grossgasteiger-844297.jpg&fm=jpg");
+  background-size: fill;
 }
 
 .loginTitle {
@@ -43,6 +43,11 @@
   margin-top: 20px;
   padding: 10px;
   cursor: pointer;
+}
+
+.loginButton:disabled {
+  cursor: not-allowed;
+  background-color: rgb(252, 173, 173);
 }
 
 .Registerbtn {
